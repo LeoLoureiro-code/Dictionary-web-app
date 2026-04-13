@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Dictionary web app</title>
+</head>
+<body>
+<div class="container">
+  <header>
+    <img src="assets/images/logo.svg" alt="logo" class="logo">
+    <select name="typography" id="typo-select">
+      <option value="sans-serif">Sans-serif</option>
+      <option value="serif">Serif</option>
+      <option value="mono">Mono</option>
+  </select>
+  <div class="theme_slider_div">
+     <input type="range" value="1" min="1" max="2" step="1" id="slider">
+     <img src="assets/images/icon-moon.svg" alt="moon icon">
+  </div>
+  </header>
+  <main>
+    <form action="" method="get">
+      <div class="input_div">
+        <input type="text" name="form_input" id="form_input">
+        <img src="assets/images/icon-search.svg" alt="search icon">
+      </div>
+    </form>
+    <section class="word_information">
+      <h1></h1>
+      <img src="assets/images/icon-play.svg" alt="play icon">
+      <p class="pronunciation_parapraph"></p>
+    </section>
+    <section class="noun_section">
+      <span>noun</span>
+      <hr>
+      <p class="noun_meaning_paragraph">Meaning</p>
+      <ul class="noun_meaning_list">
+        <li class="noun_meaning_item">
+          <p class="noun_meaning_paragraph">
+            (etc.) A set of keys used to operate a typewriter, computer etc.
+          </p>
+        </li>
+        <li class="noun_meaning_item">
+          <p class="noun_meaning_paragraph">
+            A component of many instruments including the piano, organ, and harpsichord 
+            consisting of usually black and white keys that cause different tones to be produced when struck.
+          </p>
+        </li>
+        <li class="noun_meaning_item">
+          <p class="noun_meaning_paragraph">
+            A device with keys of a musical keyboard, used to control electronic sound-producing devices which 
+            may be built into or separate from the keyboard device.
+          </p>
+        </li>
+      </ul>
+      <p class="synonyms_paragraph"></p>
+    </section>
+    <section class="verb_section">
+      <span>verb</span>
+      <hr>
+       <p class="verb_meaning_paragraph">Meaning</p>
+      <ul class="verb_meaming_list">
+        <li class="verb_meaning_item">
+          <p class="verb_meaning_paragraph">
+            To type on a computer keyboard.
+          </p>
+        </li>
+      </ul>
+      <p class="verb_example_paragraph">“Keyboarding is the part of this job I hate the most.”</p>
+    </section>
+    <hr>
+  </main>
+  <footer>
+    <p class="source_paragraph">Source:<a href="#" class="source_anchor"><img src="assets/images/icon-new-window.svg" alt="new wondow icon" class="source_window_img"></a></p>
+  </footer>
+</div>
+</body>
+</html>
