@@ -1,9 +1,21 @@
-.root{
-
+:root{
+    --color-background: #FFFFFF;
+    --color-text: #2D2D2D;
+    --color-part-of-speech: #757575;
+    --color-slider-background: #757575;
+    --color-slider-thumb: #FFFFFF;
+    --color-highlight: #A445ED;
+    --color-bullet-points: #8F19E8;
+    --color-error: #FF5252;
+    --color-input-background: #F4F4F4;
+    --color-separator: #E9E9E9;
 }
 
-.theme1{
+.light{
+    --color-background: #FFFFFF;
     --color-text: #2D2D2D;
+    --color-slider-background: #757575;
+    --color-slider-thumb: #FFFFFF;
     --color-part-of-speech: #757575;
     --color-highlight: #A445ED;
     --color-bullet-points: #8F19E8;
@@ -12,8 +24,11 @@
     --color-separator: #E9E9E9;
 }
    
-.theme2{
+.dark{
+    --color-background: #000000;
     --color-text: #FFFFFF;
+    --color-slider-background: #A445ED;
+    --color-slider-thumb: #FFFFFF;
     --color-part-of-speech: #757575;
     --color-highlight: #A445ED;
     --color-bullet-points: #8F19E8;
@@ -22,17 +37,55 @@
     --color-separator: #E9E9E9;
 }
 
+body{
+    font-family: sans-serif;
+}
+
 /*Mobile*/
 
 .container{
     padding: 1rem 1rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+select{
+    appearance: none;         
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-weight: 700;
+    background-image: url("assets/images/icon-arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    border: none;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
 }
 
 .options_div{
     display: flex;
+}
+
+#slider{
+    -webkit-appearance: none;
+    width: 2.5rem;
+    height: 1.25rem;
+    background-color: var(--color-input-background);
+    border-radius: 25%;
+}
+
+#slider::-webkit-slider-thumb{
+    -webkit-appearance: none; 
+    appearance: none;
+    background: var(--color-slider-thumb);
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
 }
