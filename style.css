@@ -11,7 +11,7 @@
     --color-separator: #E9E9E9;
 }
 
-.light{
+.theme1{
     --color-background: #FFFFFF;
     --color-text: #2D2D2D;
     --color-slider-background: #757575;
@@ -24,7 +24,7 @@
     --color-separator: #E9E9E9;
 }
    
-.dark{
+.theme2{
     --color-background: #000000;
     --color-text: #FFFFFF;
     --color-slider-background: #A445ED;
@@ -39,6 +39,8 @@
 
 body{
     font-family: sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 /*Mobile*/
@@ -76,16 +78,17 @@ select{
 #slider{
     -webkit-appearance: none;
     width: 2.5rem;
-    height: 1.25rem;
-    background-color: var(--color-input-background);
-    border-radius: 25%;
+    height: 1.3rem;
+    background-color: var(--color-slider-background);
+    border-radius: 999px;  
+    padding: 0.08rem;
 }
 
 #slider::-webkit-slider-thumb{
     -webkit-appearance: none; 
     appearance: none;
     background: var(--color-slider-thumb);
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
 }
