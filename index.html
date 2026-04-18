@@ -15,11 +15,29 @@
       <img src="assets/images/logo.svg" alt="logo" class="logo">
       <div class="options_div">
         <!--Change this to p, div, ul and li-->
-        <select name="typography" id="typo-select">
-          <option value="sans-serif">Serif</option>
-          <option value="serif">Sans-serif</option>
-          <option value="mono">Mono</option>
-        </select>
+        <div class="option_div">
+          <p class="options_paragraph">Serif</p>
+          <img src="" alt="" class="arrow_img">
+        </div>
+        <div id="typo_div">
+          <ul class="typo_list">
+            <li class="typo_option">
+              <p class="typo_option_name">
+                Serif
+              </p>
+            </li>
+            <li class="typo_option">
+              <p class="typo_option_name">
+                Sans-serif
+              </p>
+            </li>
+            <li class="typo_option">
+              <p class="typo_option_name">
+                Mono
+              </p>
+            </li>
+          </ul>
+        </div>
         <div class="theme_slider_div">
           <input type="range" value="1" min="1" max="2" step="1" id="slider">
           <img src="assets/images/icon-moon.svg" alt="moon icon">
