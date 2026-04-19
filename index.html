@@ -9,38 +9,39 @@
   <title>Dictionary web app</title>
 </head>
 
-<body class="theme1">
+<body class="theme1 sans-serif">
   <div class="container">
     <header>
       <img src="assets/images/logo.svg" alt="logo" class="logo">
-      <div class="options_div">
-        <!--Change this to p, div, ul and li-->
-        <div class="option_div">
-          <p class="options_paragraph">Serif</p>
-          <img src="" alt="" class="arrow_img">
-        </div>
-        <div id="typo_div">
-          <ul class="typo_list">
-            <li class="typo_option">
-              <p class="typo_option_name">
-                Serif
-              </p>
-            </li>
-            <li class="typo_option">
-              <p class="typo_option_name">
-                Sans-serif
-              </p>
-            </li>
-            <li class="typo_option">
-              <p class="typo_option_name">
-                Mono
-              </p>
-            </li>
-          </ul>
+      <div class="display_options_div">
+        <div class="typo_options_div">
+          <div class="options_div">
+            <p class="options_paragraph">Serif</p>
+            <img src="assets/images/icon-arrow-down.svg" alt="arrow down icon" class="arrow_img">
+          </div>
+          <div class="typo_div">
+            <ul class="typo_list">
+              <li class="typo_option">
+                <p data-font= "sans-serif" class="typo_option_name sans-serif">
+                  Sans-serif
+                </p>
+              </li>
+              <li class="typo_option">
+                <p data-font= "serif" class="typo_option_name serif ">
+                  Serif
+                </p>
+              </li>
+              <li class="typo_option">
+                <p data-font= "mono" class="typo_option_name mono">
+                  Mono
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="theme_slider_div">
           <input type="range" value="1" min="1" max="2" step="1" id="slider">
-          <img src="assets/images/icon-moon.svg" alt="moon icon">
+          <img src="assets/images/icon-moon.svg" alt="moon icon" class="theme_icon">
         </div>
       </div>
     </header>
@@ -52,7 +53,6 @@
         </div>
       </form>
       <section class="word_information">
-        div.
         <h1>keyboard</h1>
         <p class="pronunciation_parapraph">/ˈkiːbɔːd/</p>
 
@@ -93,4 +93,5 @@
   </div>
   <script src="script.js" defer></script>
 </body>
+
 </html>
