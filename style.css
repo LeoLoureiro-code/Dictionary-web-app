@@ -22,6 +22,8 @@
     --color-error: #FF5252;
     --color-input-background: #F4F4F4;
     --color-separator: #E9E9E9;
+    --color-fonts-shadow: 'tranparent';
+    --color-fonts-background: #FFFFFF;
 }
    
 .theme2{
@@ -35,6 +37,9 @@
     --color-error: #FF5252;
     --color-input-background:#1F1F1F;
     --color-separator: #E9E9E9;
+    --color-fonts-shadow: #8F19E8;
+    --color-fonts-background: #1F1F1F;
+       --theme-icon: 'assets/images/icon-moon.svg';
 }
 
 body{
@@ -57,33 +62,82 @@ header{
     align-items: center;
 }
 
-select{
-    appearance: none;         
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    font-weight: 700;
-    background-image: url("assets/images/icon-arrow-down.svg");
-    background-repeat: no-repeat;
-    background-position: 100%;
-    background-color: transparent;
-    border: none;
-    color: var(--color-text);
-    outline: none;
+
+.typo_options_div{
     display: flex;
-    padding-right: 1rem;
-    text-align: end;
+    flex-direction: column;
+    position: relative;
+}
+
+.typo_options_div:hover {
+    cursor: pointer;
+}
+
+.typo_options_div:hover .typo_div{
+    display: block;
+}
+
+.display_options_div{
+    display: flex;
     align-items: center;
-    margin-right: 1rem;
 }
 
 .options_div{
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 11rem;
 }
 
-option{
-    background-color: transparent;
-    text-align: start;
+.options_paragraph{
+    font-weight: 600;
+    text-transform: capitalize;
 }
+
+.arrow_img{
+    width: 1rem;
+    height: 1rem;
+}
+
+.typo_div{
+    background-color: var(--color-fonts-background);
+    border-radius: 15px;
+    position: absolute;
+    bottom: -9rem;
+    right: 3rem;
+    padding-left: 1.3rem;
+    box-shadow: 3px 3px 15px 2px var(--color-fonts-shadow);
+    display: none;
+}
+
+.typo_list{
+    list-style: none;
+    min-width: 11rem;
+    padding: 0;
+    margin: 0;
+}
+
+.typo_option_name{
+    text-align: start;
+    font-weight: 700;
+    margin: 1.3rem 0;
+}
+
+.sans_serif{
+    font-family: sans-serif !important;
+    font-size: 1.3rem;
+}
+
+.serif{
+    font-family: serif !important;
+    font-size: 1.1rem;
+}
+
+.mono{
+    font-family: monospace !important;
+     font-size: 1rem;
+}
+
 
 #slider{
     -webkit-appearance: none;
