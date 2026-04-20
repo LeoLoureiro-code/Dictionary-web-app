@@ -12,13 +12,39 @@ const TYPOGRAPHY = {
 const State = {
     theme: THEMES.THEME1,
     typography: TYPOGRAPHY.SERIF,
+    word: "",
+    loading: false,
+    data: {},
 }
 
 const body = document.querySelector('body');
 const slider = document.querySelector('#slider');
 const typoParagraph = document.querySelector('.options_paragraph');
+const audio = document.querySelector("#audio");
+const playBtn = document.querySelector('#playBtn');
+const form = document.querySelector('form');
+const input = document.querySelector("#form_input");
+
+//Helper functions
 
 
+async function fetchWord(word) {
+  try {
+    const response = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+
+
+//Render functions
 
 function RenderTheme(){
     State.theme = `theme${slider.value}`
@@ -36,9 +62,16 @@ function Render(){
     RenderTypography();
 }
 
+
+//Event listeners 
+
 slider.addEventListener("input", function() {
     Render();
 });
+
+// playBtn.addEventListener("click", () => {
+//   audio.paused ? audio.play() : audio.pause();
+// });
 
 document.querySelectorAll('.typo_option_name').forEach(option =>{
     option.addEventListener("click", function(){
@@ -46,4 +79,15 @@ document.querySelectorAll('.typo_option_name').forEach(option =>{
         typoParagraph.textContent = this.dataset.font;
         Render();
     })
-})
+});
+
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const word = input.value.trim();
+
+  if (!word) return;
+
+  await fetchWord(word);
+});
