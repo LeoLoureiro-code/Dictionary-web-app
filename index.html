@@ -22,17 +22,17 @@
           <div class="typo_div">
             <ul class="typo_list">
               <li class="typo_option">
-                <p data-font= "sans-serif" class="typo_option_name sans-serif">
+                <p data-font="sans-serif" class="typo_option_name sans-serif">
                   Sans-serif
                 </p>
               </li>
               <li class="typo_option">
-                <p data-font= "serif" class="typo_option_name serif ">
+                <p data-font="serif" class="typo_option_name serif ">
                   Serif
                 </p>
               </li>
               <li class="typo_option">
-                <p data-font= "mono" class="typo_option_name mono">
+                <p data-font="mono" class="typo_option_name mono">
                   Mono
                 </p>
               </li>
@@ -46,24 +46,29 @@
       </div>
     </header>
     <main>
-      <form action="" method="get">
+      <form action="" method="get" class="search_from">
         <div class="input_div">
           <input type="text" name="form_input" id="form_input">
           <img src="assets/images/icon-search.svg" alt="search icon">
         </div>
       </form>
-      <section class="word_information">
-        <h1>keyboard</h1>
-        <p class="pronunciation_parapraph">/ˈkiːbɔːd/</p>
+      <section class="word_information_section">
+        <div class="word_information_div">
+          <h1>keyboard</h1>
+          <p class="pronunciation_parapraph">/ˈkiːbɔːd/</p>
+        </div>
+        <div class="audio-card">
+          <img src="assets/images/icon-play.svg" alt="Audio cover art" class="cover">
 
-        <audio src="#">
-          <img src="assets/images/icon-play.svg" alt="play icon">
-        </audio>
+          <audio>
+            <source src="#" type="audio/mpeg">
+          </audio>
+        </div>
       </section>
       <section class="part_of_speech_section">
         <span class="part_of_speech">noun</span>
         <hr>
-        <p class="part_of_speech_meaning_paragraph">Meaning</p>
+        <p class="part_of_speech_meaning">Meaning</p>
         <ul class="part_of_speech_meaning_list">
           <li class="part_of_speech_meaning_item">
             <p class="part_of_speech_meaning_paragraph">
@@ -83,7 +88,7 @@
             </p>
           </li>
         </ul>
-        <p class="synonyms_paragraph"></p>
+        <p class="synonyms_paragraph">Synonyms: <span class="synonyms">electronic keyboard</span></p>
       </section>
     </main>
     <footer>
