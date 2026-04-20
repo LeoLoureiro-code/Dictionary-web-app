@@ -24,6 +24,7 @@
     --color-separator: #E9E9E9;
     --color-fonts-shadow: 'tranparent';
     --color-fonts-background: #FFFFFF;
+    --color-horizontal-separator: #FFFFFF;
 }
    
 .theme2{
@@ -39,7 +40,13 @@
     --color-separator: #E9E9E9;
     --color-fonts-shadow: #8F19E8;
     --color-fonts-background: #1F1F1F;
-       --theme-icon: 'assets/images/icon-moon.svg';
+     --color-horizontal-separator: #757575;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -51,9 +58,11 @@ body{
 /*Mobile*/
 
 .container{
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 header{
@@ -184,6 +193,78 @@ form{
     width: 80%;
 }
 
-.word_information{
+.word_information_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
 
+.word_information_div{
+
+}
+
+h1{
+    font-size: clamp(2rem, 3vw, 2.3rem);
+    font-weight: 700;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.pronunciation_parapraph{
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 500;
+    color: var(--color-bullet-points);
+}
+
+.word_audio{
+    height: 3rem;
+    width: 3rem;
+}
+
+.part_of_speech_section{
+    margin: 2rem 0;
+}
+
+.part_of_speech{
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    margin: 1.5rem 0;
+    display: block;
+}
+
+hr{
+    border: none;
+    background-color: var(--color-horizontal-separator);
+    height: 1px;
+    margin: 1rem 0;
+}
+
+.part_of_speech_meaning{
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 1.5rem;
+    color: #757575;
+}
+
+.part_of_speech_meaning_list{
+    color: var(--color-text);
+    padding-left: 1rem;
+}
+
+.part_of_speech_meaning_item{
+    margin: 1.5rem 0;
+}
+
+.part_of_speech_meaning_item::marker{
+    color: var(--color-bullet-points);
+}
+
+.synonyms_paragraph, .examples{
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    margin-bottom: 1.5rem;
+    color: #757575;
+}
+
+.synonyms{
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--color-bullet-points);
 }
