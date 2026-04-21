@@ -258,13 +258,13 @@ hr{
     color: var(--color-bullet-points);
 }
 
-.synonyms_paragraph, .examples{
+.synonyms_paragraph, .examples, .antonyms_paragraph{
     font-size: clamp(1rem, 2vw, 1.4rem);
     margin-bottom: 1.5rem;
     color: #757575;
 }
 
-.synonyms{
+.synonyms, .antonyms{
     font-size: clamp(1rem, 2vw, 1.4rem);
     color: var(--color-bullet-points);
 }
