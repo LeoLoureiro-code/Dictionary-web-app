@@ -9,7 +9,7 @@ const TYPOGRAPHY = {
     MONO: "mono",
 }
 
-const wordInformation = {
+const WORDINFORMATION = {
     word: "",
     phonetics: "",
     audio: "",
@@ -90,6 +90,9 @@ function GetWordInformation(data){
 
 async function fetchWord(word) {
     if (word !== "") {
+        State.loading = true;
+        State.error = false;
+        Render();
         try {
             const response = await fetch(
                 `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
@@ -101,8 +104,11 @@ async function fetchWord(word) {
             console.log(State.wordInformation);
 
         } catch (error) {
-            console.error("Error:", error);
+            State.error = true;
+            console.log(error);
         }
+        State.loading = false
+        Render();
     }
 
 }
@@ -123,14 +129,47 @@ function RenderTypography() {
 }
 
 function RenderWordInformation() {
-    const { word, phonetics, audio, source, meanings } = State.wordInformation;
+    const { word, phonetics, audio, source } = State.wordInformation;
 
+    document.querySelector('.word').textContent = word;
+    document.querySelector('.pronunciation_paragraph').textContent = phonetics;
+
+    const audioElement = document.querySelector('#audio');
+    audioElement.src = audio;
+    audioElement.load();
+
+    const sourceText = document.querySelector('.source_text');
+    sourceText.textContent = source;
+
+    const sourceLink = document.querySelector('.source_anchor');
+    sourceLink.href = source;
+
+    //Complete the render of meanings
+}
+
+function RenderError(){
+
+}
+
+function RenderLoading(){
+    const mainElement = document.querySelector('main');
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = "loading";
+    mainElement.innerHTML(loadingDiv);
 }
 
 function Render() {
     RenderTheme();
-    RenderTypography(); 
-    if(State.wordInformation.word){
+    RenderTypography();
+    if(State.loading){
+        RenderLoading();
+        return;
+    } 
+    if(State.error){
+        RenderError();
+        return;
+    }
+    if (State.wordInformation && State.wordInformation.word){
         RenderWordInformation();
     }
 }
