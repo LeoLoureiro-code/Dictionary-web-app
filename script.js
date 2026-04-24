@@ -131,8 +131,29 @@ function RenderTypography() {
 function RenderWordInformation() {
     const { word, phonetics, audio, source } = State.wordInformation;
 
-    document.querySelector('.word').textContent = word;
-    document.querySelector('.pronunciation_paragraph').textContent = phonetics;
+    const informationSection = document.querySelector('.word_information_section');
+
+    const informationDiv = document.createElement('div');
+    informationDiv.className = "word_information_div";
+
+    const wordName = document.createElement('h1');
+    wordName.className = "word";
+
+    const pronunciationParagraph = document.createElement('p');
+    pronunciationParagraph.className = 'pronunciation_paragraph';
+    pronunciationParagraph.textContent = phonetics;
+
+    informationDiv.appendChild(wordName);
+    informationDiv.appendChild(pronunciationParagraph);
+
+    informationSection.appendChild(informationDiv);
+
+
+    //Add audio card
+
+
+    // document.querySelector('.word').textContent = word;
+    // document.querySelector('.pronunciation_paragraph').textContent = phonetics;
 
     const audioElement = document.querySelector('#audio');
     audioElement.src = audio;
@@ -144,7 +165,35 @@ function RenderWordInformation() {
     const sourceLink = document.querySelector('.source_anchor');
     sourceLink.href = source;
 
-    //Complete the render of meanings
+    const meaningsContainer = document.querySelector('.meanings_container');
+    meaningsContainer.innerHTML = '';
+    State.wordInformation.meanings.forEach(meaning => {
+
+        const meaningDiv = document.createElement('div');
+        meaningDiv.className = 'meaning';
+
+        const partOfSpeech = document.createElement('h2');
+        partOfSpeech.textContent = meaning.partOfSpeech;
+        meaningDiv.appendChild(partOfSpeech);
+
+        meaning.definitions.forEach(definition => {
+            const definitionDiv = document.createElement('div');
+            definitionDiv.className = 'definition';
+
+            const definitionText = document.createElement('p');
+            definitionText.textContent = definition.definition;
+            definitionDiv.appendChild(definitionText);
+            
+            if (definition.example) {
+                const exampleText = document.createElement('p');
+                exampleText.className = 'example';
+                exampleText.textContent = `Example: ${definition.example}`;
+                definitionDiv.appendChild(exampleText);
+            }
+            meaningDiv.appendChild(definitionDiv);
+        });
+        meaningsContainer.appendChild(meaningDiv);
+    });
 }
 
 function RenderError(){
@@ -152,10 +201,7 @@ function RenderError(){
 }
 
 function RenderLoading(){
-    const mainElement = document.querySelector('main');
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = "loading";
-    mainElement.innerHTML(loadingDiv);
+
 }
 
 function Render() {
