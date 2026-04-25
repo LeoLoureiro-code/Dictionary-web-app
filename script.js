@@ -138,6 +138,7 @@ function RenderWordInformation() {
 
     const wordName = document.createElement('h1');
     wordName.className = "word";
+    wordName.textContent = word;
 
     const pronunciationParagraph = document.createElement('p');
     pronunciationParagraph.className = 'pronunciation_paragraph';
@@ -146,7 +147,22 @@ function RenderWordInformation() {
     informationDiv.appendChild(wordName);
     informationDiv.appendChild(pronunciationParagraph);
 
+    const audioCard = document.createElement('div');
+
+    const audioImage = document.createElement('img');
+    audioImage.src = "assets/images/icon-play.svg";
+    audioImage.className = "cover";
+
+    const audioElement = document.createElement('audio');
+    audioElement.src = audio;
+    audioElement.load();
+
+    audioCard.appendChild(audioImage);
+    audioCard.appendChild(audioElement);
+
     informationSection.appendChild(informationDiv);
+    informationSection.appendChild(audioCard);
+    
 
 
     //Add audio card
@@ -155,9 +171,9 @@ function RenderWordInformation() {
     // document.querySelector('.word').textContent = word;
     // document.querySelector('.pronunciation_paragraph').textContent = phonetics;
 
-    const audioElement = document.querySelector('#audio');
-    audioElement.src = audio;
-    audioElement.load();
+    
+    
+    
 
     const sourceText = document.querySelector('.source_text');
     sourceText.textContent = source;
@@ -227,10 +243,10 @@ slider.addEventListener("input", function () {
     Render();
 });
 
-playBtn.addEventListener("click", () => {
-    console.log(audio);
-    audio.paused ? audio.play() : audio.pause();
-});
+// playBtn.addEventListener("click", () => {
+//     console.log(audio);
+//     audio.paused ? audio.play() : audio.pause();
+// });
 
 document.querySelectorAll('.typo_option_name').forEach(option => {
     option.addEventListener("click", function () {
