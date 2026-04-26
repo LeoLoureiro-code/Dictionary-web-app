@@ -132,6 +132,7 @@ function RenderWordInformation() {
     const { word, phonetics, audio, source } = State.wordInformation;
 
     const informationSection = document.querySelector('.word_information_section');
+    informationSection.innerHTML = "";
 
     const informationDiv = document.createElement('div');
     informationDiv.className = "word_information_div";
@@ -157,23 +158,17 @@ function RenderWordInformation() {
     audioElement.src = audio;
     audioElement.load();
 
+    audioImage.addEventListener("click", () => {
+        audioElement.play();
+    });
+
     audioCard.appendChild(audioImage);
     audioCard.appendChild(audioElement);
 
     informationSection.appendChild(informationDiv);
     informationSection.appendChild(audioCard);
     
-
-
-    //Add audio card
-
-
-    // document.querySelector('.word').textContent = word;
-    // document.querySelector('.pronunciation_paragraph').textContent = phonetics;
-
-    
-    
-    
+  
 
     const sourceText = document.querySelector('.source_text');
     sourceText.textContent = source;
@@ -242,11 +237,6 @@ function Render() {
 slider.addEventListener("input", function () {
     Render();
 });
-
-// playBtn.addEventListener("click", () => {
-//     console.log(audio);
-//     audio.paused ? audio.play() : audio.pause();
-// });
 
 document.querySelectorAll('.typo_option_name').forEach(option => {
     option.addEventListener("click", function () {
