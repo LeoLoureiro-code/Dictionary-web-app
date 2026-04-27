@@ -24,7 +24,7 @@
     --color-separator: #E9E9E9;
     --color-fonts-shadow: 'tranparent';
     --color-fonts-background: #FFFFFF;
-    --color-horizontal-separator: #FFFFFF;
+    --color-horizontal-separator: #757575;
 }
    
 .theme2{
@@ -175,22 +175,39 @@ form{
     background-color: var(--color-input-background);
     border-radius: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
-    padding: 0 1rem; 
+    padding: 0 1.5rem; 
     
 }
 
 #form_input{
-    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--color-input-background) !important;
     border: none;
+    outline: none;
     color: var(--color-text);
     font-size: 1.3rem;
     font-weight: 600;
     height: 3rem;
     outline: none;
     width: 80%;
+}
+
+#form_input:focus,
+#form_input:active{
+    background-color: var(--color-input-background) !important;
+}
+
+#form_input:-webkit-autofill,
+#form_input:-webkit-autofill:hover,
+#form_input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-input-background) inset;
+    box-shadow: 0 0 0 1000px var(--color-input-background) inset;
+    transition: background-color 9999s ease-in-out 0s;
 }
 
 .word_information_section{
@@ -200,8 +217,8 @@ form{
     margin-top: 2rem;
 }
 
-.word_information_div{
-
+.word{
+    text-transform: capitalize;
 }
 
 h1{
@@ -210,7 +227,7 @@ h1{
     margin: 1.5rem 0 1rem 0;
 }
 
-.pronunciation_parapraph{
+.pronunciation_paragraph{
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     font-weight: 500;
     color: var(--color-bullet-points);
@@ -221,7 +238,11 @@ h1{
     width: 3rem;
 }
 
-.part_of_speech_section{
+.cover{
+    cursor: pointer;
+}
+
+.meanings_container{
     margin: 2rem 0;
 }
 
@@ -230,9 +251,10 @@ h1{
     font-size: clamp(1.2rem, 2vw, 1.4rem);
     margin: 1.5rem 0;
     display: block;
+    text-transform: capitalize;
 }
 
-hr{
+.horizontal_line{
     border: none;
     background-color: var(--color-horizontal-separator);
     height: 1px;
@@ -267,4 +289,14 @@ hr{
 .synonyms, .antonyms{
     font-size: clamp(1rem, 2vw, 1.4rem);
     color: var(--color-bullet-points);
+}
+
+.source_paragraph{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.loading{
+    
 }
