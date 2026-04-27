@@ -39,8 +39,6 @@ const State = {
 const body = document.querySelector('body');
 const slider = document.querySelector('#slider');
 const typoParagraph = document.querySelector('.options_paragraph');
-const audio = document.querySelector("#audio");
-const playBtn = document.querySelector('.cover');
 const form = document.querySelector('form');
 const input = document.querySelector("#form_input");
 
@@ -132,7 +130,10 @@ function RenderWordInformation() {
     const { word, phonetics, audio, source } = State.wordInformation;
 
     const informationSection = document.querySelector('.word_information_section');
+    const footer = document.querySelector('footer');
+
     informationSection.innerHTML = "";
+    footer.innerHTML = "";
 
     const informationDiv = document.createElement('div');
     informationDiv.className = "word_information_div";
@@ -166,44 +167,94 @@ function RenderWordInformation() {
     audioCard.appendChild(audioElement);
 
     informationSection.appendChild(informationDiv);
-    informationSection.appendChild(audioCard);
-    
-  
+    informationSection.appendChild(audioCard); 
 
-    const sourceText = document.querySelector('.source_text');
-    sourceText.textContent = source;
+    const sourceParagraph = document.createElement('p');
+    sourceParagraph.className = "source_paragraph";
 
-    const sourceLink = document.querySelector('.source_anchor');
-    sourceLink.href = source;
+    const sourceSpan = document.createElement('span');
+    sourceSpan.className = "source_text";
+    sourceSpan.textContent = source;
+    sourceSpan.href = source;
+
+    const sourceAnchor = document.createElement('a');
+    sourceAnchor.className = "source_anchor";
+    sourceAnchor.href = source;
+
+    const sourceAnchorImg = document.createElement('img');
+    sourceAnchorImg.className = "source_window_img";
+    sourceAnchorImg.alt = "new wondow icon";
+    sourceAnchorImg.src = "assets/images/icon-new-window.svg";
+
+    sourceAnchor.appendChild(sourceAnchorImg);
+
+
+    sourceParagraph.appendChild(sourceSpan);
+    sourceParagraph.appendChild(sourceAnchor);
+    footer.appendChild(sourceParagraph);
 
     const meaningsContainer = document.querySelector('.meanings_container');
     meaningsContainer.innerHTML = '';
     State.wordInformation.meanings.forEach(meaning => {
 
-        const meaningDiv = document.createElement('div');
-        meaningDiv.className = 'meaning';
+        const meaningUl = document.createElement('ul');
+        meaningUl.className = 'part_of_speech_meaning_list';
 
         const partOfSpeech = document.createElement('h2');
         partOfSpeech.textContent = meaning.partOfSpeech;
-        meaningDiv.appendChild(partOfSpeech);
+        partOfSpeech.className = 'part_of_speech';
+
+        const horizontalLine = document.createElement('hr');
+        horizontalLine.classList = "horizontal_line";
+
+        meaningUl.appendChild(partOfSpeech);
+        meaningUl.appendChild(horizontalLine);
+
+
+        //needs synonyms and antonyms
 
         meaning.definitions.forEach(definition => {
-            const definitionDiv = document.createElement('div');
-            definitionDiv.className = 'definition';
+            const definitionLi = document.createElement('li');
+            definitionLi.className = 'part_of_speech_meaning_item';
 
             const definitionText = document.createElement('p');
             definitionText.textContent = definition.definition;
-            definitionDiv.appendChild(definitionText);
+            definitionText.classList = "part_of_speech_meaning_paragraph";
+            definitionLi.appendChild(definitionText);
             
             if (definition.example) {
                 const exampleText = document.createElement('p');
                 exampleText.className = 'example';
                 exampleText.textContent = `Example: ${definition.example}`;
-                definitionDiv.appendChild(exampleText);
+                definitionLi.appendChild(exampleText);
             }
-            meaningDiv.appendChild(definitionDiv);
+
+            if(definition.synonyms && definition.synonyms > 0){
+                const synonymsParagraph = document.createElement('p');
+                synonymsParagraph.className = "synonyms_paragraph";
+                synonymsParagraph.textContent = "Synonyms:";
+
+                synonyms.forEach(synonym =>{
+                    const synonymSpan = document.createElement('span');
+                    synonymSpan.textContent = synonym;
+                    synonymsParagraph.appendChild(synonymSpan);
+                })
+            }
+
+            if(definition.antonyms && definition.antonyms.length > 0){
+                const antonymsParagraph = document.createElement('p');
+                antonymsParagraph.className = "antonyms_paragraph";
+                antonymsParagraph.textContent = "Antonyms:";
+
+                antonyms.forEach(antonym =>{
+                    const antonymSpan = document.createElement('span');
+                    antonymSpan.textContent = antonym;
+                    antonymsParagraph.appendChild(antonymSpan);
+                })
+            }
+            meaningUl.appendChild(definitionLi);
         });
-        meaningsContainer.appendChild(meaningDiv);
+        meaningsContainer.appendChild(meaningUl);
     });
 }
 
