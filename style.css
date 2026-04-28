@@ -210,6 +210,16 @@ form{
     transition: background-color 9999s ease-in-out 0s;
 }
 
+.form_input_error{
+    border: 1px solid var(--color-error);
+}
+
+.error{
+    color: var(--color-error);
+    font-size: 0.8rem;
+    display: none;
+}
+
 .word_information_section{
     display: flex;
     align-items: center;
@@ -299,4 +309,23 @@ h1{
 
 .loading{
     
+}
+
+.error_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error_title{
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.error_paragraph{
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-part-of-speech);
+    line-height: 1.2rem;
 }
