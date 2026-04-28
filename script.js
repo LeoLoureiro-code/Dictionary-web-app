@@ -99,19 +99,21 @@ async function fetchWord(word) {
             const data = await response.json();
             const wordInformation = GetWordInformation(data);
             State.wordInformation = wordInformation;
-            console.log(State.wordInformation);
 
         } catch (error) {
             State.error = true;
-            console.log(error);
+            Render();
         }
         State.loading = false
         Render();
     }
+    // if(!word){
+    //     input.classList = "form_input_error";
+    //     const errorParagraph = document.querySelector('error');
+    //     errorParagraph.style.display = 'block';
+    // }
 
 }
-
-
 
 //Render functions
 
@@ -260,6 +262,18 @@ function RenderWordInformation() {
 
 function RenderError(){
 
+    const errorDiv = document.createElement('div');
+    const errorTitle = document.createElement('h3');
+    const errorParagraph = document.createElement('p');
+
+    errorTitle.className = "error_title";
+    errorParagraph.className = "error_paragraph";
+
+    errorTitle.textContent = "No Definitions Found";
+    errorParagraph.textContent = "Sorry pal, we couldn't find definitions for the word you were looking for. You can try the search again at later time or head to the web instead.";
+
+    errorDiv.appendChild(errorTitle);
+    errorDiv.appendChild(errorParagraph);
 }
 
 function RenderLoading(){
@@ -296,7 +310,6 @@ document.querySelectorAll('.typo_option_name').forEach(option => {
         Render();
     })
 });
-
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
