@@ -107,11 +107,7 @@ async function fetchWord(word) {
         State.loading = false
         Render();
     }
-    // if(!word){
-    //     input.classList = "form_input_error";
-    //     const errorParagraph = document.querySelector('error');
-    //     errorParagraph.style.display = 'block';
-    // }
+
 
 }
 
@@ -262,6 +258,13 @@ function RenderWordInformation() {
 
 function RenderError(){
 
+    const informationSection = document.querySelector('.word_information_section');
+    const meaningsContainer = document.querySelector('.meanings_container');
+    const footer = document.querySelector('footer');
+    meaningsContainer.innerHTML = "";
+    informationSection.innerHTML = "";
+    footer.innerHTML = "";
+
     const errorDiv = document.createElement('div');
     const errorTitle = document.createElement('h3');
     const errorParagraph = document.createElement('p');
@@ -274,9 +277,23 @@ function RenderError(){
 
     errorDiv.appendChild(errorTitle);
     errorDiv.appendChild(errorParagraph);
+
+    informationSection.appendChild(errorDiv);
 }
 
 function RenderLoading(){
+
+    const informationSection = document.querySelector('.word_information_section');
+    const meaningsContainer = document.querySelector('.meanings_container');
+    const footer = document.querySelector('footer');
+    meaningsContainer.innerHTML = "";
+    informationSection.innerHTML = "";
+    footer.innerHTML = "";
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = "loader";
+
+    informationSection.appendChild(loadingDiv);
 
 }
 
