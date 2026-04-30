@@ -1,15 +1,4 @@
-:root{
-    --color-background: #FFFFFF;
-    --color-text: #2D2D2D;
-    --color-part-of-speech: #757575;
-    --color-slider-background: #757575;
-    --color-slider-thumb: #FFFFFF;
-    --color-highlight: #A445ED;
-    --color-bullet-points: #8F19E8;
-    --color-error: #FF5252;
-    --color-input-background: #F4F4F4;
-    --color-separator: #E9E9E9;
-}
+
 
 .theme1{
     --color-background: #FFFFFF;
@@ -55,7 +44,6 @@ body{
     color: var(--color-text);
 }
 
-/*Mobile*/
 
 .container{
     padding: 2rem;
@@ -301,15 +289,44 @@ h1{
     color: var(--color-bullet-points);
 }
 
-.source_paragraph{
+
+.source_anchor{
+    color: var(--color-text);
     display: flex;
-    justify-content: space-evenly;
+    gap: 1rem;
     align-items: center;
 }
 
-.loading{
-    
+.loader {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
 }
+
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #e70606;
+    animation: prixClipFix 2s linear infinite ;
+}    
+
+@keyframes rotate {
+    100% {transform: rotate(360deg)}
+}    
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}    
 
 .error_div{
     display: flex;
