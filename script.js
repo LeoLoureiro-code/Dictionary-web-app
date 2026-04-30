@@ -33,6 +33,7 @@ const State = {
     word: "",
     loading: false,
     error: false,
+    // errorMessage = "",
     wordInformation: {},
 }
 
@@ -87,6 +88,14 @@ function GetWordInformation(data){
 
 
 async function fetchWord(word) {
+    
+    // if (word.trim() === "") {
+    //     State.error = true;
+    //     State.errorMessage = "empty";
+    //     Render();
+    //     return;
+    // }
+    
     if (word !== "") {
         State.loading = true;
         State.error = false;
@@ -107,8 +116,6 @@ async function fetchWord(word) {
         State.loading = false
         Render();
     }
-
-
 }
 
 //Render functions
@@ -172,7 +179,7 @@ function RenderWordInformation() {
 
     const sourceSpan = document.createElement('span');
     sourceSpan.className = "source_text";
-    sourceSpan.textContent = source;
+    sourceSpan.textContent = "Source: " + source;
     sourceSpan.href = source;
 
     const sourceAnchor = document.createElement('a');
@@ -184,11 +191,10 @@ function RenderWordInformation() {
     sourceAnchorImg.alt = "new wondow icon";
     sourceAnchorImg.src = "assets/images/icon-new-window.svg";
 
+    sourceAnchor.appendChild(sourceSpan);
     sourceAnchor.appendChild(sourceAnchorImg);
-
-
-    sourceParagraph.appendChild(sourceSpan);
     sourceParagraph.appendChild(sourceAnchor);
+
     footer.appendChild(sourceParagraph);
 
     const meaningsContainer = document.querySelector('.meanings_container');
@@ -297,9 +303,27 @@ function RenderLoading(){
 
 }
 
+// function RenderErrorMessage() {
+//     const errorElement = document.querySelector('.error');
+
+//     if (State.error) {
+//         errorElement.style.display = "block";
+
+//         if (State.errorMessage === "empty") {
+//             errorElement.textContent = "Whoops, can’t be empty…";
+//         } else {
+//             errorElement.textContent = "Something went wrong...";
+//         }
+
+//     } else {
+//         errorElement.style.display = "none";
+//     }
+// }
+
 function Render() {
     RenderTheme();
     RenderTypography();
+
     if(State.loading){
         RenderLoading();
         return;
@@ -308,6 +332,7 @@ function Render() {
         RenderError();
         return;
     }
+
     if (State.wordInformation && State.wordInformation.word){
         RenderWordInformation();
     }
