@@ -205,7 +205,6 @@ form{
 .error{
     color: var(--color-error);
     font-size: 0.8rem;
-    display: none;
 }
 
 .word_information_section{
