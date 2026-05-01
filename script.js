@@ -33,7 +33,7 @@ const State = {
     word: "",
     loading: false,
     error: false,
-    // errorMessage = "",
+    errorMessage: "",
     wordInformation: {},
 }
 
@@ -45,10 +45,10 @@ const input = document.querySelector("#form_input");
 
 //Helper functions
 
-function GetWordInformation(data){
+function GetWordInformation(data) {
     const [entry] = data;
 
-     const {
+    const {
         word,
         phonetic,
         phonetics,
@@ -64,7 +64,7 @@ function GetWordInformation(data){
         source: sourceUrls[0] || ""
     };
 
-        const meanings = entry.meanings.map(meaning => {
+    const meanings = entry.meanings.map(meaning => {
         const { partOfSpeech, definitions } = meaning;
 
         const formattedDefinitions = definitions.map(definition => {
@@ -81,21 +81,14 @@ function GetWordInformation(data){
         };
     });
 
-    wordInformation.meanings = meanings;    
+    wordInformation.meanings = meanings;
 
     return wordInformation;
 }
 
 
 async function fetchWord(word) {
-    
-    // if (word.trim() === "") {
-    //     State.error = true;
-    //     State.errorMessage = "empty";
-    //     Render();
-    //     return;
-    // }
-    
+
     if (word !== "") {
         State.loading = true;
         State.error = false;
@@ -137,6 +130,9 @@ function RenderWordInformation() {
     const informationSection = document.querySelector('.word_information_section');
     const footer = document.querySelector('footer');
 
+    const errorElement = document.querySelector('.error');
+    errorElement.innerHTML = "";
+
     informationSection.innerHTML = "";
     footer.innerHTML = "";
 
@@ -172,7 +168,7 @@ function RenderWordInformation() {
     audioCard.appendChild(audioElement);
 
     informationSection.appendChild(informationDiv);
-    informationSection.appendChild(audioCard); 
+    informationSection.appendChild(audioCard);
 
     const sourceParagraph = document.createElement('p');
     sourceParagraph.className = "source_paragraph";
@@ -225,7 +221,7 @@ function RenderWordInformation() {
             definitionText.textContent = definition.definition;
             definitionText.classList = "part_of_speech_meaning_paragraph";
             definitionLi.appendChild(definitionText);
-            
+
             if (definition.example) {
                 const exampleText = document.createElement('p');
                 exampleText.className = 'example';
@@ -233,24 +229,24 @@ function RenderWordInformation() {
                 definitionLi.appendChild(exampleText);
             }
 
-            if(definition.synonyms && definition.synonyms > 0){
+            if (definition.synonyms && definition.synonyms > 0) {
                 const synonymsParagraph = document.createElement('p');
                 synonymsParagraph.className = "synonyms_paragraph";
                 synonymsParagraph.textContent = "Synonyms:";
 
-                synonyms.forEach(synonym =>{
+                synonyms.forEach(synonym => {
                     const synonymSpan = document.createElement('span');
                     synonymSpan.textContent = synonym;
                     synonymsParagraph.appendChild(synonymSpan);
                 })
             }
 
-            if(definition.antonyms && definition.antonyms.length > 0){
+            if (definition.antonyms && definition.antonyms.length > 0) {
                 const antonymsParagraph = document.createElement('p');
                 antonymsParagraph.className = "antonyms_paragraph";
                 antonymsParagraph.textContent = "Antonyms:";
 
-                antonyms.forEach(antonym =>{
+                antonyms.forEach(antonym => {
                     const antonymSpan = document.createElement('span');
                     antonymSpan.textContent = antonym;
                     antonymsParagraph.appendChild(antonymSpan);
@@ -262,7 +258,7 @@ function RenderWordInformation() {
     });
 }
 
-function RenderError(){
+function RenderError() {
 
     const informationSection = document.querySelector('.word_information_section');
     const meaningsContainer = document.querySelector('.meanings_container');
@@ -287,7 +283,7 @@ function RenderError(){
     informationSection.appendChild(errorDiv);
 }
 
-function RenderLoading(){
+function RenderLoading() {
 
     const informationSection = document.querySelector('.word_information_section');
     const meaningsContainer = document.querySelector('.meanings_container');
@@ -303,37 +299,27 @@ function RenderLoading(){
 
 }
 
-// function RenderErrorMessage() {
-//     const errorElement = document.querySelector('.error');
-
-//     if (State.error) {
-//         errorElement.style.display = "block";
-
-//         if (State.errorMessage === "empty") {
-//             errorElement.textContent = "Whoops, can’t be empty…";
-//         } else {
-//             errorElement.textContent = "Something went wrong...";
-//         }
-
-//     } else {
-//         errorElement.style.display = "none";
-//     }
-// }
+function RenderErrorMessage() {
+    const errorElement = document.querySelector('.error');
+    errorElement.innerHTML = "";
+    errorElement.className = "error";
+    errorElement.textContent = "Whoops, can’t be empty…";
+}
 
 function Render() {
     RenderTheme();
     RenderTypography();
 
-    if(State.loading){
+    if (State.loading) {
         RenderLoading();
         return;
-    } 
-    if(State.error){
-        RenderError();
+    }
+    if (State.errorMessage === "empty") {
+        RenderErrorMessage();
         return;
     }
 
-    if (State.wordInformation && State.wordInformation.word){
+    if (State.wordInformation && State.wordInformation.word) {
         RenderWordInformation();
     }
 }
@@ -358,7 +344,14 @@ form.addEventListener("submit", async (e) => {
 
     const word = input.value.trim();
 
-    if (!word) return;
+    if (word.trim() === "") {
+        State.errorMessage = "empty";
+        Render();
+        return;
+    } else {
+        State.errorMessage = "";
+        await fetchWord(word);
+    }
 
-    await fetchWord(word);
+
 });
